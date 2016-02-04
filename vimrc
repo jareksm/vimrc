@@ -198,7 +198,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
 set undofile
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
