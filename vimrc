@@ -18,6 +18,8 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'scrooloose/syntastic'
+Plugin 'saltstack/salt-vim'
+Plugin 'klen/python-mode'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -198,6 +200,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
 set undofile
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
