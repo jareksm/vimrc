@@ -29,13 +29,16 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'godlygeek/tabular'
+Plugin 'rodjek/vim-puppet'
 
 " all of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 colorscheme solarized
-"let g:solarized_termcolors=16
+let g:solarized_termcolors=256
 "colorscheme elflord
 syntax on
 set nrformats-=octal
@@ -118,18 +121,23 @@ let g:tagbar_type_go = {
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
-" Syntastic
-"lee g:syntastic_always_populate_loc_list = 1
+"" Syntastic
+"let g:syntastic_mode_map = {
+    "\ "mode" : "passive",
+    "\ "active_filetypes": ["puppet"],
+    "\ "passive_filetypes": ["go", "ruby", "python"]}
+"let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-""let g:syntastic_check_on_wq = 0
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_enable_balloons = 1
 "let g:syntastic_puppet_puppetlint_args='
-            "\ --no-80chars-check
             "\ --no-documentation-check
             "\ --no-inherits_across_namespaces-check
             "\ --no-only_variable_string-check
             "\ --no-selector_inside_resource-check
             "\'
+"let g:syntastic_go_gometalinter_checker = 1
 
 " Set minimum syntax keyword length.
 "let g:neocomplete#sources#syntax#min_keyword_length = 2
