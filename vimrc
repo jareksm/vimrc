@@ -1,3 +1,4 @@
+set colorcolumn=0
 set bs=indent,eol,start
 set encoding=utf-8
 set nocompatible
