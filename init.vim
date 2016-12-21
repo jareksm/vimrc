@@ -8,6 +8,7 @@ set background=dark
 filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+"set rtp+=~/.vim/bundle/deoplete.nvim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -27,8 +28,9 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'mbbill/undotree'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/deoplete.nvim'
 Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/dein.vim'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'godlygeek/tabular'
@@ -121,10 +123,12 @@ let g:tagbar_type_go = {
 \ }
 
 
-" neocomplete
-let g:neocomplete#enable_at_startup = 1
+" deoplete
+let g:deoplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#data_directory = '~/.cache/deoplete'
 "" Syntastic
 "let g:syntastic_mode_map = {
     "\ "mode" : "passive",
@@ -144,7 +148,7 @@ let g:neocomplete#enable_smart_case = 1
 "let g:syntastic_go_gometalinter_checker = 1
 
 " Set minimum syntax keyword length.
-"let g:neocomplete#sources#syntax#min_keyword_length = 2
+let g:deoplete#sources#syntax#min_keyword_length = 1
 "
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -200,9 +204,10 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 " rename the identifier under the cursor to a new name
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go set nolist
-"au FileType go setlocal omnifunc=g:neocomplete#enable_at_startup
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
+"au FileType go setlocal omnifunc=g:deoplete#enable_at_startup
+if !exists('g:deoplete#sources#omni#input_patterns')
+    let g:deoplete#sources#omni#input_patterns = {}
+    let g:deoplete#sources#omni#input_patterns.go = '[^.\d \t].\w'
 endif
 
 au FileType ruby setlocal omnifunc=rubycomplete#Complete
