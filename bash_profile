@@ -15,6 +15,7 @@ if [ ${BASH_VERSINFO[0]} -ge 4 ]; then
     shopt -s histappend
 fi
 
+export ARCHFLAGS="-arch x86_64"
 export GOROOT
 export GOPATH=$HOME/gowork
 export PATH=$HOME/bin:$GOPATH/bin:$GOROOT/bin:/usr/local/bin:/usr/local/opt/gnupg/libexec/gpgbin:$PATH
@@ -112,3 +113,5 @@ PROMPT_END='\n\[\033[0;37m\]$(date +%H:%M) \h\[\033[0;0m\] $ '
 GIT_PROMPT_SHOW_UPSTREAM=1
 . $HOME/.bash-git-prompt/gitprompt.sh
 eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+source ~/perl5/perlbrew/etc/bashrc

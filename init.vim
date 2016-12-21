@@ -1,51 +1,59 @@
-set colorcolumn=0
 set bs=indent,eol,start
 set encoding=utf-8
 set nocompatible
 set t_Co=256
+set termguicolors
 set background=dark
 
 filetype off
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-"set rtp+=~/.vim/bundle/deoplete.nvim
-call vundle#begin()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
 
-" custom plugins
-Plugin 'fatih/vim-go'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
+set runtimepath+=/Users/jarek/.vim/bundle/dein.vim
+call dein#begin('/Users/jarek/.vim/bundle/')
+call dein#add('Shougo/dein.vim')
+
+" Add or remove your plugins here:
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('fatih/vim-go')
+call dein#add('vim-ruby/vim-ruby')
+call dein#add('majutsushi/tagbar')
+call dein#add('scrooloose/nerdtree')
+call dein#add('saltstack/salt-vim')
+call dein#add('klen/python-mode')
+call dein#add('bling/vim-airline')
+call dein#add('tpope/vim-fugitive', {'on_cmd' : 'Gstatus'})
+call dein#add('tpope/vim-fugitive')
+call dein#add('jistr/vim-nerdtree-tabs')
+call dein#add('mbbill/undotree')
+call dein#add('Lokaltog/vim-easymotion')
+call dein#add('scrooloose/nerdcommenter')
+call dein#add('Shougo/deoplete.nvim')
+call dein#add('zchee/deoplete-go', {'build': 'make'})
 "Plugin 'scrooloose/syntastic'
-Plugin 'saltstack/salt-vim'
-Plugin 'klen/python-mode'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'mbbill/undotree'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/dein.vim'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'godlygeek/tabular'
-Plugin 'rodjek/vim-puppet'
-Plugin 'vim-perl/vim-perl'
 
-" all of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" You can specify revision/branch/tag.
+"call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+
+" Required:
+call dein#end()
+
+" Required:
+filetype plugin indent on
+
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
 
 colorscheme solarized
-let g:solarized_termcolors=256
-let perl_include_pod = 1
-let perl_extended_vars = 1
-let perl_sync_dist = 250
+"let g:solarized_termcolors=16
+"colorscheme elflord
 syntax on
 set nrformats-=octal
 set autoindent
@@ -123,32 +131,25 @@ let g:tagbar_type_go = {
 \ }
 
 
-" deoplete
+" neocomplete
 let g:deoplete#enable_at_startup = 1
 " Use smartcase.
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#data_directory = '~/.cache/deoplete'
-"" Syntastic
-"let g:syntastic_mode_map = {
-    "\ "mode" : "passive",
-    "\ "active_filetypes": ["puppet"],
-    "\ "passive_filetypes": ["go", "ruby", "python"]}
-"let g:syntastic_always_populate_loc_list = 1
+" Syntastic
+"lee g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_enable_balloons = 1
+"let g:syntastic_check_on_open = 1
+""let g:syntastic_check_on_wq = 0
 "let g:syntastic_puppet_puppetlint_args='
+            "\ --no-80chars-check
             "\ --no-documentation-check
             "\ --no-inherits_across_namespaces-check
             "\ --no-only_variable_string-check
             "\ --no-selector_inside_resource-check
             "\'
-"let g:syntastic_go_gometalinter_checker = 1
 
 " Set minimum syntax keyword length.
-let g:deoplete#sources#syntax#min_keyword_length = 1
+"let g:neocomplete#sources#syntax#min_keyword_length = 2
 "
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -162,7 +163,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-let g:neosnippet#snippets_directory = '~/.vim/bundle/neosnippet-snippets/neosnippets'
+let g:neosnippet#snippets_directory = '~/.vim/bundle/repos/github.com/Shougo/neosnippet-snippets/neosnippets'
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
@@ -204,13 +205,15 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 " rename the identifier under the cursor to a new name
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go set nolist
-"au FileType go setlocal omnifunc=g:deoplete#enable_at_startup
+"au FileType go setlocal omnifunc=g:neocomplete#enable_at_startup
 if !exists('g:deoplete#sources#omni#input_patterns')
     let g:deoplete#sources#omni#input_patterns = {}
-    let g:deoplete#sources#omni#input_patterns.go = '[^.\d \t].\w'
+    let g:deoplete#auto_completion_start_length = 1
+    "let g:deoplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
+    let g:deoplete#sources#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '\h\w*::']
 endif
 
-au FileType ruby setlocal omnifunc=rubycomplete#Complete
+"au FileType ruby setlocal omnifunc=rubycomplete#Complete
 au BufReadPost fugitive://* set bufhidden=delete
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
