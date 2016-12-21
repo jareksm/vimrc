@@ -1,0 +1,49 @@
+[color]
+    branch      = auto
+    diff        = auto
+    interactive = auto
+    status      = auto
+    ui          = true
+
+[color "status"]
+    added     = green
+    changed   = red bold
+    untracked = magenta bold
+
+[color "branch"]
+    remote = yellow
+
+[alias]
+    a   = add
+    br  = branch
+    b   = branch
+    cl  = clean
+    cm  = commit
+    co  = checkout
+    d   = diff
+    dh  = diff --compaction-heuristic
+    dhc = diff --compaction-heuristic --word-diff=color --word-diff-regex=.
+    dhw = diff --compaction-heuristic --word-diff=color
+    dw  = diff --word-diff=color
+    g   = grep
+    pu  = pull
+    ps  = push
+    rst = reset
+    s   = show
+    st  = status
+
+[user]
+    email = 
+    name  = 
+
+[core]
+    excludesfile = /Users/jarek/.gitignore
+
+[push]
+    default = simple
+
+[credential]
+    helper = osxkeychain
+
+[github]
+    user  = 
