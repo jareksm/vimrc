@@ -1,5 +1,9 @@
 nv=$(which nvim)
 
+if [ -f "$HOME/.gitlabrc" ]; then
+    . $HOME/.gitlabrc
+fi
+
 if [ -x $HOME/go/bin/go ]; then
     GOROOT=$HOME/go
 elif [ -x /usr/local/go/bin/go ]; then
@@ -20,13 +24,15 @@ export GOROOT
 export GOPATH=$HOME/gowork
 export PATH=$HOME/bin:$GOPATH/bin:$GOROOT/bin:/usr/local/bin:/usr/local/opt/gnupg/libexec/gpgbin:$PATH
 export EDITOR=$nv
-export CGO_CFLAGS="-I $(mecab-config --inc-dir)"
-export CGO_LDFLAGS="$(mecab-config --libs)"
+if which mecab-config >&-; then
+    export CGO_CFLAGS="-I $(mecab-config --inc-dir)"
+    export CGO_LDFLAGS="$(mecab-config --libs)"
+fi
 
 alias vi=$nv
 alias vim=$nv
-alias gowin="GOOS=windows GOARCH=amd64 go"
-alias golnx="GOOS=linux GOARCH=amd64 go"
+alias gowin="GOOS=windows GOARCH=amd64 go build"
+alias golnx="GOOS=linux GOARCH=amd64 go build"
 
 # build go static binary from root of project
 gostatic(){
@@ -114,4 +120,7 @@ GIT_PROMPT_SHOW_UPSTREAM=1
 . $HOME/.bash-git-prompt/gitprompt.sh
 eval "$(rbenv init -)"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-source ~/perl5/perlbrew/etc/bashrc
+PERLBREW=~/perl5/perlbrew/etc/bashrc
+if [ -f "$PERLBREW" ]; then
+    . $PERLBREW
+fi
