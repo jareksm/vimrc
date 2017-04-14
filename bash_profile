@@ -33,6 +33,7 @@ alias vi=$nv
 alias vim=$nv
 alias gowin="GOOS=windows GOARCH=amd64 go build"
 alias golnx="GOOS=linux GOARCH=amd64 go build"
+alias pe="perl -anE"
 
 # build go static binary from root of project
 gostatic(){
@@ -114,8 +115,8 @@ golistdeps(){
     )
 }
 
-GIT_PROMPT_END='\n\[\033[0;37m\]$(date +%H:%M) \h\[\033[0;0m\] $ '
-PROMPT_END='\n\[\033[0;37m\]$(date +%H:%M) \h\[\033[0;0m\] $ '
+GIT_PROMPT_END='\n\[\033[0;37m\]$(date +%H:%M) \u@\h\[\033[0;0m\] $ '
+PROMPT_END='\n\[\033[0;37m\]$(date +%H:%M) \u@\h\[\033[0;0m\] $ '
 GIT_PROMPT_SHOW_UPSTREAM=1
 . $HOME/.bash-git-prompt/gitprompt.sh
 eval "$(rbenv init -)"

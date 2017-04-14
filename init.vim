@@ -2,7 +2,7 @@ set bs=indent,eol,start
 set encoding=utf-8
 set nocompatible
 set t_Co=256
-set termguicolors
+"set termguicolors
 set background=dark
 
 filetype off
@@ -34,7 +34,10 @@ call dein#add('mbbill/undotree')
 call dein#add('Lokaltog/vim-easymotion')
 call dein#add('scrooloose/nerdcommenter')
 call dein#add('Shougo/deoplete.nvim')
+call dein#add('rodjek/vim-puppet')
 call dein#add('zchee/deoplete-go', {'build': 'make'})
+"call dein#add('godoctor/godoctor.vim')
+call dein#add('jodosha/vim-godebug')
 "Plugin 'scrooloose/syntastic'
 
 " You can specify revision/branch/tag.
@@ -48,7 +51,7 @@ filetype plugin indent on
 
 " If you want to install not installed plugins on startup.
 "if dein#check_install()
-"  call dein#install()
+  "call dein#install()
 "endif
 
 colorscheme solarized

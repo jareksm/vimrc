@@ -3,7 +3,7 @@
     diff        = auto
     interactive = auto
     status      = auto
-    ui          = true
+    ui          = auto
 
 [color "status"]
     added     = green
@@ -14,11 +14,15 @@
     remote = yellow
 
 [alias]
-    a   = add
-    br  = branch
+    a   = add .
+    ai  = add -i .
     b   = branch
+    bm  = branch -m
+    brm = branch -D
+    cb  = checkout -b
+    c  = commit
     cl  = clean
-    cm  = commit
+    cm  = commit -m
     co  = checkout
     d   = diff
     dh  = diff --compaction-heuristic
@@ -26,9 +30,10 @@
     dhw = diff --compaction-heuristic --word-diff=color
     dw  = diff --word-diff=color
     g   = grep
-    pu  = pull
+    ls  = log @^ --name-only --oneline
+    pl  = pull
     ps  = push
-    rst = reset
+    r   = reset
     s   = show
     st  = status
 
